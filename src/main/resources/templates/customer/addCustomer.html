@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8">
+    <title>Add new customer</title>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html :: div"></div>
+<form class="login-form" action="/addCustomer" method="post" th:object="${customer}">
+    <h1 class="title login-element">New Customer</h1>
+    <div class="text login-element">Name:</div>
+    <input class=" input login-element" type="text" name="firstName" value="">
+    <div class="text login-element">Last Name:</div>
+    <input class="input login-element" type="text" name="lastName" value="">
+    <div class="text login-element">Passport Number:</div>
+    <input class="input login-element" type="text" name="passportNumber" value="">
+    <p>
+
+        <input class="button login-element" type="submit" name="submit" value="Save">
+    </p>
+</form>
+</body>
+</html>
