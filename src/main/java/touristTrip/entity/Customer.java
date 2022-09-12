@@ -12,10 +12,9 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
     @NotBlank
-    private String firsName;
+    private String firstName;
     @NotBlank
     private String lastName;
-    @NotBlank
     private Long passportNumber;
     @OneToOne
     @JoinColumn(name = "price_id")

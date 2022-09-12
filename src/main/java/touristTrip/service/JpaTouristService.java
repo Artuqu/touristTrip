@@ -11,6 +11,8 @@ import touristTrip.repository.CustomerRepository;
 import touristTrip.repository.SuggestedPriceRepository;
 import touristTrip.repository.TripRepository;
 
+import java.util.List;
+
 @Service
 public class JpaTouristService implements TouristService {
 
@@ -51,6 +53,11 @@ public class JpaTouristService implements TouristService {
     @Override
     public Trip save(Trip trip) {
         return tripRepository.save(trip);
+    }
+
+    @Override
+    public List<Customer> findAllCustomers() {
+        return customerRepository.findAll();
     }
 
     @Override

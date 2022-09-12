@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8">
+    <title>All Customers</title>
+    <link rel="stylesheet" type="text/css" href="/css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html :: div"></div>
+<br>
+<p>Database of all customers</p>
+<br>
+<table border="2" color="blue">
+
+    <tr>
+        <th>Lp.</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Passport Number</th>
+        <th>Price of your Trip</th>
+        <th>Action</th>
+
+    </tr>
+    <tbody>
+
+
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.customerId}"></td>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.passportNumber}"></td>
+        <td th:text="${customer.price}"></td>
+        <td class="trip-image">
+                <div class="button" th:href="@{/addCustomer/edit/} + ${customer.customerId}">Edit Customer</div>
+                <div class="button" th:href="@{/addCustomer/delete/} + ${customer.customerId}">Delete Customer</div>
+                <div class="button" th:href="@{/home}">Renegotiate the price</div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

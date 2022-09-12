@@ -21,6 +21,14 @@ public class CustomerController {
         this.jpaTouristService = jpaTouristService;
     }
 
+
+   @GetMapping("/allCustomers")
+   public ModelAndView showAllCustomers(ModelAndView mav){
+        mav.addObject("customers", jpaTouristService.findAllCustomers());
+        mav.setViewName("customer/allCustomers");
+        return mav;
+   }
+
     @GetMapping("")
     public ModelAndView addCustomer(ModelAndView mav) {
         mav.addObject("customer", new Customer());
@@ -51,12 +59,12 @@ public class CustomerController {
             return "customer/editCustomer";
         }
         Customer newCustomer = jpaTouristService.findCustomer(customer.getCustomerId());
-        newCustomer.setFirsName(customer.getFirsName());
+        newCustomer.setFirstName(customer.getFirstName());
         newCustomer.setLastName(customer.getLastName());
         newCustomer.setPassportNumber(customer.getPassportNumber());
         this.jpaTouristService.save(newCustomer);
         model.addAttribute("customer", newCustomer);
-        return "redirect:home";
+        return "redirect:allCustomer";
 
     }
 
@@ -68,7 +76,7 @@ public class CustomerController {
             System.out.println(e.getMessage());
             model.addAttribute("message", "Operation failed");
         }
-        return "redirect:home";
+        return "redirect:/addCustomer/allCustomers";
     }
 
 }
