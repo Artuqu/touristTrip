@@ -64,7 +64,7 @@ public class CustomerController {
         newCustomer.setPassportNumber(customer.getPassportNumber());
         this.jpaTouristService.save(newCustomer);
         model.addAttribute("customer", newCustomer);
-        return "redirect:allCustomer";
+        return "redirect:allCustomers";
 
     }
 

@@ -4,36 +4,37 @@
     <meta charset="UTF-8">
     <title>Find trip for you</title>
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
+    <script src="/js/tripSelect.js"></script>
 
 </head>
 <body>
 <div th:insert="menu.html :: div"></div>
 
 <div class="trip-image">
-    <button class="button">Prev</button>
-    <ul>
-        <li><img src="images/czechy-praga.jpg">
+    <button class="button" id="prevButton">Prev</button>
+    <ul class="slider" id="slider1">
+        <li><img src="images/czech-prague.jpg">
             <p>Kierunek: Czechy, Praga</p>
             <p>Praga to jedno z najstarszych i najpiększniejszych miast Europy. Koniecznie zobacz most Karola</p>
             <p>Rezerwuj</p>
         </li>
-        <li><img src="images/egipt-giza.jpg">
+        <li><img src="images/egypt-giza.jpg">
             <p>Kierunek: Egipt, Giza</p>
             <p>Zwiedzaj kraj Faraonów i zrób sobie zdjęcie z tajemniczym sfinksem</p>
             <p>Rezerwuj</p>
         </li>
-        <li><img src="images/hiszpania-barcelona.jpeg">
+        <li><img src="images/spain-barcelona.jpeg">
             <p>Kierunek: Hiszpania, Barcelona</p>
             <p>Południowy klimata i piękne plaże Morza Śródziemnego. Koniecznie zobacz jedną z najłynniejszych katedr
                 Europy.</p>
             <p>Rezerwuj</p>
         </li>
-        <li><img src="images/turcja-istambul.jpg">
+        <li><img src="images/turkey-istambul.jpg">
             <p>Kierunek: Turcja, Konstntynopol</p>
             <p>Dawana stolica Wschodniego Rzymu. Niezwykła Hagia Sophia do dzisiaj intryguje swoim rozmachem.</p>
             <p>Rezerwuj</p>
         </li>
-        <li><img src="images/wlochy-rzym.jpg">
+        <li><img src="images/italy-rome.jpg">
             <p>Kierunek: Włochy, Rzym</p>
             <p>Wszystkie drogi prowadzą do Rzymu. Zobacz Koloseum i Forum Romanum.</p>
             <p>Rezerwuj</p>
@@ -45,7 +46,7 @@
             <p>Rezerwuj</p>
         </li>
     </ul>
-    <button class="button">Next</button>
+    <button class="button" id="nextButton">Next</button>
 </div>
 
 

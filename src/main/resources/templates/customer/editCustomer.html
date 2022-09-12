@@ -8,5 +8,19 @@
 <body>
 <div th:insert="menu.html :: div"></div>
 
+<form class="login-form" action="/addCustomer/edit" method="post" th:object="${customer}">
+    <h1 class="title login-element">Edit Customer</h1>
+    <input type="hidden" name="customerId" th:value="*{customerId}">
+    <div class="text login-element">New Name:</div>
+    <input class=" input login-element" type="text" name="firstName" value="">
+    <div class="text login-element">New Last Name:</div>
+    <input class="input login-element" type="text" name="lastName" value="">
+    <div class="text login-element">New Passport Number:</div>
+    <input class="input login-element" type="text" name="passportNumber" value="">
+    <p>
+        <input class="button login-element" type="submit" name="submit" value="Edit">
+    </p>
+</form>
+
 </body>
 </html>

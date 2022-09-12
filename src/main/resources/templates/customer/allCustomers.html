@@ -31,9 +31,9 @@
         <td th:text="${customer.passportNumber}"></td>
         <td th:text="${customer.price}"></td>
         <td class="trip-image">
-                <div class="button" th:href="@{/addCustomer/edit/} + ${customer.customerId}">Edit Customer</div>
-                <div class="button" th:href="@{/addCustomer/delete/} + ${customer.customerId}">Delete Customer</div>
-                <div class="button" th:href="@{/home}">Renegotiate the price</div>
+            <div><a class="button" th:href="@{/addCustomer/edit/} + ${customer.customerId}">Edit Customer</a></div>
+            <div><a class="button" th:href="@{/addCustomer/delete/} + ${customer.customerId}">Delete Customer</a></div>
+            <div><a class="button" th:href="@{/home}">Renegotiate the price</a></div>
         </td>
     </tr>
     </tbody>
