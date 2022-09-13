@@ -22,12 +22,12 @@ public class CustomerController {
     }
 
 
-   @GetMapping("/allCustomers")
-   public ModelAndView showAllCustomers(ModelAndView mav){
+    @GetMapping("/allCustomers")
+    public ModelAndView showAllCustomers(ModelAndView mav) {
         mav.addObject("customers", jpaTouristService.findAllCustomers());
         mav.setViewName("customer/allCustomers");
         return mav;
-   }
+    }
 
     @GetMapping("")
     public ModelAndView addCustomer(ModelAndView mav) {

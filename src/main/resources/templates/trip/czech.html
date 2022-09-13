@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Czech - Prague</title>
+    <link rel="stylesheet" type="text/css" href="/css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html :: div"></div>
+<form class="login-form" action="/addTrip/Czech" method="post" th:object="${trip}">
+    <h1 class="title login-element">New Trip</h1>
+    <p>
+    <div class="text login-element">Direction: Czech - Prague</div>
+    <input class=" input login-element" type="hidden" name="destination" value="Czech - Prague">
+    </p>
+    <p>
+    <div class="text login-element">Select date of trip:</div>
+    <select class="text login-element" type="date" name="tripDate" value="">
+        <option id="firstOption" type="date">02.10.2022 - 09.10.2022</option>
+        <option id="secondOption" type="date">02.11.2022 - 09.11.2022</option>
+        <option id="thirdOption" type="date">02.12.2022 - 09.12.2022</option>
+    </select>
+    </p>
+    <p>
+    <div class="text login-element">Select your conductor:</div>
+    <select class="text login-element" type="text" name="conductor" value="">
+
+
+
+    </select>
+    </p>
+
+
+    <div class="text login-element">Price: 500$/person</div>
+    <input class=" input login-element" type="hidden" name="suggestedPrice" value="500$">
+
+    <p>
+        <input class="button login-element" type="submit" name="submit" value="Rezerwuj">
+    </p>
+</form>
+</body>
+</html>

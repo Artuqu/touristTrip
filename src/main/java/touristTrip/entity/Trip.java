@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,11 +13,9 @@ public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long tripId;
     private String destination;
-    private Date startDate;
-    private Date endDate;
+    private Date tripDate;
     @OneToOne
     @JoinColumn(name = "price_id")
     private SuggestedPrice price;
@@ -25,6 +24,9 @@ public class Trip {
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
 
+    @ManyToOne
+    @JoinColumn(name = "passport_number")
+    private Customer customers;
 
 
 }

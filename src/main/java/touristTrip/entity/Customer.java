@@ -20,4 +20,5 @@ public class Customer {
     @JoinColumn(name = "price_id")
     private SuggestedPrice price;
 
+
 }
