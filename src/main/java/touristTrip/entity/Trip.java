@@ -2,9 +2,7 @@ package touristTrip.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -14,11 +12,14 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tripId;
+    private String images;
     private String destination;
-    private Date tripDate;
-    @OneToOne
-    @JoinColumn(name = "price_id")
-    private SuggestedPrice price;
+    private String description;
+
+    @OneToMany
+    private List<TripDate> tripDate;
+
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "conductor_id")

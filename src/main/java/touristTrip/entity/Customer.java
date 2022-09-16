@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Customer {
@@ -16,9 +18,10 @@ public class Customer {
     @NotBlank
     private String lastName;
     private Long passportNumber;
-    @OneToOne
-    @JoinColumn(name = "price_id")
-    private SuggestedPrice price;
 
+    private double price;
+
+    @OneToMany
+    private List<Trip> trips;
 
 }

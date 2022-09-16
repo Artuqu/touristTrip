@@ -6,12 +6,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
-public class SuggestedPrice {
+public class TripDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long priceId;
-    private Long price;
+    private Long tripDateId;
+
+    private Date startDate;
+
+    private Date endDate;
 }

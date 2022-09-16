@@ -2,10 +2,10 @@ package touristTrip.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import touristTrip.entity.SuggestedPrice;
+import touristTrip.entity.TripDate;
 
 @Repository
-public interface SuggestedPriceRepository extends JpaRepository<SuggestedPrice,Long> {
+public interface TripDateRepository extends JpaRepository<TripDate,Long> {
 
 
 }

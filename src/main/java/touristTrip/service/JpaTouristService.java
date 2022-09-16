@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import touristTrip.entity.Conductor;
 import touristTrip.entity.Customer;
-import touristTrip.entity.SuggestedPrice;
 import touristTrip.entity.Trip;
+import touristTrip.entity.TripDate;
 import touristTrip.repository.ConductorRepository;
 import touristTrip.repository.CustomerRepository;
-import touristTrip.repository.SuggestedPriceRepository;
+import touristTrip.repository.TripDateRepository;
 import touristTrip.repository.TripRepository;
 
 import java.util.List;
@@ -18,15 +18,15 @@ public class JpaTouristService implements TouristService {
 
     ConductorRepository conductorRepository;
     CustomerRepository customerRepository;
-    SuggestedPriceRepository suggestedPriceRepository;
+    TripDateRepository tripDateRepository;
     TripRepository tripRepository;
 
     @Autowired
     JpaTouristService(ConductorRepository conductorRepository, CustomerRepository customerRepository,
-                      SuggestedPriceRepository suggestedPriceRepository, TripRepository tripRepository) {
+                      TripDateRepository tripDateRepository, TripRepository tripRepository) {
         this.conductorRepository = conductorRepository;
         this.customerRepository = customerRepository;
-        this.suggestedPriceRepository = suggestedPriceRepository;
+        this.tripDateRepository = tripDateRepository;
         this.tripRepository = tripRepository;
     }
 
@@ -45,10 +45,6 @@ public class JpaTouristService implements TouristService {
         return customerRepository.getOne(customerId);
     }
 
-    @Override
-    public SuggestedPrice save(SuggestedPrice suggestedPrice) {
-        return suggestedPriceRepository.save(suggestedPrice);
-    }
 
     @Override
     public Trip save(Trip trip) {
@@ -56,8 +52,18 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
+    public List<Trip> findAllTrips() {
+        return tripRepository.findAll();
+    }
+
+    @Override
     public List<Customer> findAllCustomers() {
         return customerRepository.findAll();
+    }
+
+    @Override
+    public List<TripDate> findAllDates() {
+        return tripDateRepository.findAll();
     }
 
     @Override
