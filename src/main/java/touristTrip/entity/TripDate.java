@@ -1,11 +1,10 @@
 package touristTrip.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,7 +15,13 @@ public class TripDate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tripDateId;
 
-    private Date startDate;
+    private Long tripId;
 
-    private Date endDate;
+    @ManyToOne
+    private Trip trip;
+
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 }

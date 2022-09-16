@@ -19,15 +19,14 @@ public class Trip {
     @OneToMany
     private List<TripDate> tripDate;
 
-    private Double price;
+    private double price;
 
     @ManyToOne
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
 
     @ManyToOne
-    @JoinColumn(name = "passport_number")
-    private Customer customers;
+    private Customer customer;
 
 
 }

@@ -52,6 +52,11 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
+    public Trip findTrip(Long tripId) {
+        return tripRepository.getOne(tripId);
+    }
+
+    @Override
     public List<Trip> findAllTrips() {
         return tripRepository.findAll();
     }
@@ -67,7 +72,17 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
+    public List<Conductor> findAllConductors() {
+        return conductorRepository.findAll();
+    }
+
+    @Override
     public void deleteCustomer(Long customerId) {
         customerRepository.deleteById(customerId);
+    }
+
+    @Override
+    public List<TripDate> getAllStartDates(Long tripId) {
+        return tripDateRepository.findAllTripDatesByTripId(tripId);
     }
 }

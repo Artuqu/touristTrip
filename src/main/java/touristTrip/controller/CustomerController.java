@@ -30,20 +30,20 @@ public class CustomerController {
     }
 
     @GetMapping("")
-    public ModelAndView addCustomer(ModelAndView mav) {
+    public ModelAndView addCustomerWithTrip(ModelAndView mav) {
         mav.addObject("customer", new Customer());
         mav.setViewName("customer/addCustomer");
         return mav;
     }
 
     @PostMapping("")
-    public String addCustomerPost(@ModelAttribute("customer") @Valid Customer customer, BindingResult result, Model model) {
+    public String addCustomerPostWithTrip(@ModelAttribute("customer") @Valid Customer customer, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         }
-        this.jpaTouristService.save(customer);
         model.addAttribute("customer", customer);
-        return "redirect:home";
+        this.jpaTouristService.save(customer);
+        return "redirect:/addCustomer/allCustomers";
     }
 
     //    edit

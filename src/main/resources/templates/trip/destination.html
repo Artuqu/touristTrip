@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Destination</title>
+    <link rel="stylesheet" type="text/css" href="/css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html :: div"></div>
+<form class="login-form" action="/addTrip/addDestination" method="post" th:object="${customer}">
+    <h1 class="title login-element">New Trip</h1>
+    <div class="text login-element" th:text="'Destination: ' + ${trip.destination}"></div>
+    <input class=" input login-element" type="hidden" name="trip.destination" value="">
+    <br>
+    <div class="text login-element">Select date of trip</div>
+    <select class="text login-element" type="date" name="tripDate" value="">
+        <option th:each="date: ${date}"
+                th:value="${date.tripDateId}"
+                th:text="${date.startDate} +' - '+ ${date.endDate}">
+        </option>
+    </select>
+    <div class="text login-element">Select your conductor</div>
+    <select class="text login-element" type="text" name="conductor">
+        <option th:each="conductor: ${conductor}"
+                th:value="${conductor.conductorId}"
+                th:text="${conductor.fullName}">>
+        </option>
+    </select>
+    <div class="text login-element" th:text="'Price: ' + ${trip.price} +'$ /person'"></div>
+    <input class=" input login-element" type="hidden" name="suggestedPrice">
+    <br>
+    <div class="text login-element">Add Customer</div>
+    <select class="text login-element" type="text" name="customer">
+        <option th:each="customer: ${customer}"
+                th:value="${customer.customerId}"
+                th:text="${customer.firstName} + ' ' + ${customer.lastName} + ' '+ ${customer.passportNumber}"></option>
+    </select>
+    <p>
+        <input class="button login-element" type="submit" name="submit" value="Rezerwuj">
+    </p>
+</form>
+</body>
+</html>

@@ -8,7 +8,7 @@
 <body>
 <div th:insert="menu.html :: div"></div>
 <br>
-<p>Database of all customers</p>
+<h2 class="">Database of all customers</h2>
 <br>
 <table border="2" color="blue">
 
@@ -31,9 +31,9 @@
         <td th:text="${customer.passportNumber}"></td>
         <td th:text="${customer.price}"></td>
         <td class="trip-image">
-            <div><a class="button" th:href="@{/addCustomer/edit/} + ${customer.customerId}">Edit Customer</a></div>
-            <div><a class="button" th:href="@{/addCustomer/delete/} + ${customer.customerId}">Delete Customer</a></div>
-            <div><a class="button" th:href="@{/home}">Renegotiate the price</a></div>
+            <div><a class="button" th:href="'/addCustomer/edit/' + ${customer.customerId}">Edit Customer</a></div>
+            <div><a class="button" th:href="'/addCustomer/delete/' + ${customer.customerId}">Delete Customer</a></div>
+            <div><a class="button" th:href="'/home'">Renegotiate the price</a></div>
         </td>
     </tr>
     </tbody>

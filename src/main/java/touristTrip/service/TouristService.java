@@ -13,11 +13,15 @@ public interface TouristService {
     Customer save (Customer customer);
     Customer findCustomer (Long customerId);
     Trip save (Trip trip);
+    Trip findTrip(Long tripId);
     List<Trip> findAllTrips();
 
     List<Customer> findAllCustomers();
 
     List<TripDate> findAllDates();
+    List<Conductor> findAllConductors();
 
     void deleteCustomer (Long customerId);
+
+    List <TripDate> getAllStartDates(Long tripId);
 }
