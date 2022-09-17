@@ -12,6 +12,7 @@ import touristTrip.repository.TripDateRepository;
 import touristTrip.repository.TripRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JpaTouristService implements TouristService {
@@ -41,6 +42,11 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
+    public Optional<Customer> findCustomerList(Long customerId) {
+        return customerRepository.findById(customerId);
+    }
+
+    @Override
     public Customer findCustomer(Long customerId) {
         return customerRepository.getOne(customerId);
     }
@@ -49,6 +55,11 @@ public class JpaTouristService implements TouristService {
     @Override
     public Trip save(Trip trip) {
         return tripRepository.save(trip);
+    }
+
+    @Override
+    public Optional<Trip> findTripList(Long tripId) {
+        return tripRepository.findById(tripId);
     }
 
     @Override

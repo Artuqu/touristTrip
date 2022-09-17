@@ -12,16 +12,18 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
-    @NotBlank
+    private Long id;
+    @NotBlank(message = "Can't be blank")
     private String firstName;
     @NotBlank
     private String lastName;
-    private Long passportNumber;
+
+    private String passportNumber;
 
     private double price;
 
-    @OneToMany
+    @ManyToMany
+    @JoinColumn(name = "trip_id")
     private List<Trip> trips;
 
 }

@@ -11,7 +11,7 @@ public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tripId;
+    private Long id;
     private String images;
     private String destination;
     private String description;
@@ -25,8 +25,9 @@ public class Trip {
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
 
-    @ManyToOne
-    private Customer customer;
+    @ManyToMany
+    @JoinColumn(name = "customer_id")
+    private List<Customer> customers;
 
 
 }

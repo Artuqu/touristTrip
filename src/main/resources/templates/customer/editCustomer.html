@@ -10,7 +10,7 @@
 
 <form class="login-form" action="/addCustomer/edit" method="post" th:object="${customer}">
     <h1 class="title login-element">Edit Customer</h1>
-    <input type="hidden" name="customerId" th:value="*{customerId}">
+    <input type="hidden" name="id" th:value="*{id}">
     <div class="text login-element">New Name:</div>
     <input class=" input login-element" type="text" name="firstName" value="">
     <div class="text login-element">New Last Name:</div>

@@ -16,7 +16,7 @@
         <li th:each="trip:${trip}"><img th:src="${trip.images}">
             <p th:text="'Destination: ' + ${trip.destination}"></p>
             <p th:text="${trip.description}"></p>
-            <p><a th:href="'/addTrip/addDestination/' + ${trip.tripId}">Book your trip</a></p>
+            <p><a th:href="'/addTrip/addDestination/' + ${trip.id}">Book your trip</a></p>
         </li>
     </ul>
     <button class="button" id="nextButton">Next</button>

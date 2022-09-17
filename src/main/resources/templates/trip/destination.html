@@ -8,35 +8,31 @@
 <body>
 <div th:insert="menu.html :: div"></div>
 <form class="login-form" action="/addTrip/addDestination" method="post" th:object="${customer}">
-    <h1 class="title login-element">New Trip</h1>
+    <h1 class="title login-element">Book your trip</h1>
     <div class="text login-element" th:text="'Destination: ' + ${trip.destination}"></div>
-    <input class=" input login-element" type="hidden" name="trip.destination" value="">
+    <input class=" input login-element" type="hidden" name="trip.destination" th:value="${trip.destination}">
     <br>
     <div class="text login-element">Select date of trip</div>
-    <select class="text login-element" type="date" name="tripDate" value="">
+    <select class="text login-element" type="date" name="tripDate.startDate">
         <option th:each="date: ${date}"
-                th:value="${date.tripDateId}"
+                th:value="${date.id}"
                 th:text="${date.startDate} +' - '+ ${date.endDate}">
         </option>
     </select>
-    <div class="text login-element">Select your conductor</div>
-    <select class="text login-element" type="text" name="conductor">
-        <option th:each="conductor: ${conductor}"
-                th:value="${conductor.conductorId}"
-                th:text="${conductor.fullName}">>
-        </option>
-    </select>
+<!--    <div class="text login-element" th:text=""></div>-->
+<!--    <input  th:value="${trip.conductorId}" th:text="${trip.conductor.fullName}" type="">-->
     <div class="text login-element" th:text="'Price: ' + ${trip.price} +'$ /person'"></div>
-    <input class=" input login-element" type="hidden" name="suggestedPrice">
+    <input class=" input login-element" type="hidden" name="customer.price" th:value="${trip.price}">
     <br>
     <div class="text login-element">Add Customer</div>
-    <select class="text login-element" type="text" name="customer">
+    <select class="text login-element" type="text" name="customer.customerId">
         <option th:each="customer: ${customer}"
-                th:value="${customer.customerId}"
+                th:value="${customer.id}"
                 th:text="${customer.firstName} + ' ' + ${customer.lastName} + ' '+ ${customer.passportNumber}"></option>
     </select>
+    <th:errors path="*" />
     <p>
-        <input class="button login-element" type="submit" name="submit" value="Rezerwuj">
+        <input class="button login-element" type="submit" name="submit" value="Booked">
     </p>
 </form>
 </body>

@@ -13,13 +13,9 @@ public class TripDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tripDateId;
+    private Long id;
 
     private Long tripId;
-
-    @ManyToOne
-    private Trip trip;
-
 
     private LocalDate startDate;
 

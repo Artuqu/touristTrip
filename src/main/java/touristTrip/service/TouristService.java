@@ -6,13 +6,16 @@ import touristTrip.entity.Trip;
 import touristTrip.entity.TripDate;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TouristService {
 
     Conductor save (Conductor conductor);
     Customer save (Customer customer);
+    Optional<Customer> findCustomerList (Long customerId);
     Customer findCustomer (Long customerId);
     Trip save (Trip trip);
+    Optional<Trip> findTripList(Long tripId);
     Trip findTrip(Long tripId);
     List<Trip> findAllTrips();
 

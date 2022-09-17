@@ -12,7 +12,7 @@ public class Conductor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long conductorId;
+    private Long id;
     private String fullName;
     @PESEL
     private String pesel;

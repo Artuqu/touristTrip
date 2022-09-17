@@ -58,7 +58,7 @@ public class CustomerController {
         if (result.hasErrors()) {
             return "customer/editCustomer";
         }
-        Customer newCustomer = jpaTouristService.findCustomer(customer.getCustomerId());
+        Customer newCustomer = jpaTouristService.findCustomer(customer.getId());
         newCustomer.setFirstName(customer.getFirstName());
         newCustomer.setLastName(customer.getLastName());
         newCustomer.setPassportNumber(customer.getPassportNumber());
