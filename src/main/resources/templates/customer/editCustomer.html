@@ -12,11 +12,11 @@
     <h1 class="title login-element">Edit Customer</h1>
     <input type="hidden" name="id" th:value="*{id}">
     <div class="text login-element">New Name:</div>
-    <input class=" input login-element" type="text" name="firstName" value="">
+    <input class=" input login-element" type="text" name="firstName" th:value="*{firstName}">
     <div class="text login-element">New Last Name:</div>
-    <input class="input login-element" type="text" name="lastName" value="">
+    <input class="input login-element" type="text" name="lastName" th:value="*{lastName}">
     <div class="text login-element">New Passport Number:</div>
-    <input class="input login-element" type="text" name="passportNumber" value="">
+    <input class="input login-element" type="text" name="passportNumber" th:value="*{passportNumber}">
     <p>
         <input class="button login-element" type="submit" name="submit" value="Edit">
     </p>

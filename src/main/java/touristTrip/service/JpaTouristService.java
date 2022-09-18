@@ -3,6 +3,7 @@ package touristTrip.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import touristTrip.entity.*;
+import touristTrip.object.Trips;
 import touristTrip.repository.*;
 
 import java.util.List;
@@ -108,6 +109,16 @@ public class JpaTouristService implements TouristService {
     @Override
     public List<Customer> customersWithoutTrip() {
         return customerRepository.customersWithoutTrip();
+    }
+
+    @Override
+    public void deleteAllCustomerTrips(Long customerId) {
+        customerTripsRepository.deleteAllCustomerTripsByCustomerId(customerId);
+    }
+
+    @Override
+    public List<Trips> avgPriceList() {
+        return tripRepository.avgPrices();
     }
 
 

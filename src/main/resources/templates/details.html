@@ -7,12 +7,12 @@
 </head>
 <body>
 <div th:insert="menu.html :: div"></div>
-<h3>All Details Are Below</h3>
+<h3>All Details Are Below</h3><br>
 <div><h4>Most Wanted Destination</h4></div>
 <span th:text="${mostWanted}"></span>
 <br>
 <div><h4>Customers Without Trip</h4></div>
-<table border="2" color="blue">
+<table border="2">
     <tr>
         <th>Lp.</th>
         <th>First Name</th>
@@ -28,8 +28,37 @@
     </tr>
     </tbody>
 </table>
-<div>Details About Price Of Trip</div>
-<div>AVG Price of Trip</div>
-<div>SUM Price of Trip</div>
+<br>
+<div><h4>Details About Price Of All Trip</h4></div>
+<br>
+<div><h4>AVG Price of Trip</h4></div>
+<table border="2">
+    <tr>
+        <th>Lp.</th>
+        <th>Destination</th>
+        <th>Average Price</th>
+    </tr>
+    <tbody>
+    <tr th:each="trip : ${avgPrice}">
+    <td th:text="${trip.id}"></td>
+    <td th:text="${trip.destination}"></td>
+    <td th:text="${trip.price}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<div><h4>SUM Price of Trip</h4></div>
+<table border="2">
+    <tr>
+        <th>Lp.</th>
+        <th>Destination</th>
+        <th>Sum of Price</th>
+    </tr>
+    <tbody>
+    <tr th:each="trip : ${sumPrice}">
+        <td th:text="${trip}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

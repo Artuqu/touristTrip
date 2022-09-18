@@ -1,6 +1,7 @@
 package touristTrip.service;
 
 import touristTrip.entity.*;
+import touristTrip.object.Trips;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,4 +42,10 @@ public interface TouristService {
     Object getMostWanted();
 
     List<Customer> customersWithoutTrip();
+
+    void deleteAllCustomerTrips(Long customerId);
+
+    List<Trips> avgPriceList();
+
+
 }

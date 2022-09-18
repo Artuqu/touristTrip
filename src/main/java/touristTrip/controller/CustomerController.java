@@ -71,7 +71,12 @@ public class CustomerController {
     @GetMapping("/delete/{id}")
     public String deleteCustomer(@ModelAttribute("customer") @PathVariable Long id, Model model) {
         try {
+            Thread thread = new Thread(() -> {
+            this.jpaTouristService.deleteAllCustomerTrips(id);
+            });
+            thread.start();
             this.jpaTouristService.deleteCustomer(id);
+
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             model.addAttribute("message", "Operation failed");

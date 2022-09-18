@@ -20,6 +20,6 @@ public class Customer {
 
     private String passportNumber;
 
-    @OneToMany(mappedBy = "customer", orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
     private List<CustomerTrips> customerTrips;
 }
