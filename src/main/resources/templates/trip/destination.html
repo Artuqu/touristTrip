@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Add Destination</title>
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
+    <script src="/js/changePrice.js"></script>
 </head>
 <body>
 <div th:insert="menu.html :: div"></div>
@@ -21,8 +22,8 @@
     </select>
     <!--    <div class="text login-element" th:text="${conductor.fullName}"></div>-->
     <!--    <input  class=" input login-element" th:value="${conductor.id}"  type="text" name="conductorId">-->
-    <div class="text login-element" th:text="'Price: ' + ${trip.price} +'$ /person'"></div>
-    <input class=" input login-element" type="hidden" name="price" th:value="${trip.price}">
+    <div class="text login-element" th:text="'Suggested Price: ' + ${trip.price} +'$ /person'"></div>
+    <input class=" input login-element" type="hidden" name="price" th:value="${trip.price}" id="price">
     <button class="button login-element" value="Change Price" type="button" id="changePrice">Change Price</button>
     <br>
     <div class="text login-element">Add Customer</div>
