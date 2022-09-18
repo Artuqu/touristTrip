@@ -11,6 +11,9 @@ import touristTrip.entity.Trip;
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
 
-    @Query(value = "SELECT sum(customer_id) FROM trip where sum=max", nativeQuery = true)
-    Integer mostWanted();
+    @Query(value = "Select max(Trip.Id) from Trip inner join Customer_Trips on Customer_Trips.Trip_Id=Trip.Id", nativeQuery = true)
+    Object mostWanted();
+
+//    @Query(value = "")
+
 }

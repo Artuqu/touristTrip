@@ -20,4 +20,7 @@ public class TripDate {
     private LocalDate startDate;
 
     private LocalDate endDate;
+
+    @OneToOne(mappedBy = "tripDate", orphanRemoval = true)
+    private CustomerTrips customerTrips;
 }

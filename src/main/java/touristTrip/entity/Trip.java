@@ -16,18 +16,16 @@ public class Trip {
     private String destination;
     private String description;
 
-    @OneToMany
-    private List<TripDate> tripDate;
-
     private double price;
 
     @ManyToOne
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
 
-    @ManyToMany
-    @JoinColumn(name = "customer_id")
-    private List<Customer> customers;
+    @OneToOne
+    @JoinColumn(name = "tripId")
+    private TripDate tripDate;
 
-
+    @OneToMany(mappedBy = "trip", orphanRemoval = true)
+    private List<CustomerTrips> customerTrips;
 }

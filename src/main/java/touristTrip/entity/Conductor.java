@@ -17,7 +17,8 @@ public class Conductor {
     @PESEL
     private String pesel;
 
-    @OneToMany
-    private List<Trip> trips;
+    @OneToMany(mappedBy = "conductor", orphanRemoval = true)
+    private List<CustomerTrips> customerTrips;
+
 
 }

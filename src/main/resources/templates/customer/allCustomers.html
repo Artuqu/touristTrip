@@ -17,7 +17,7 @@
         <th>Name</th>
         <th>Last Name</th>
         <th>Passport Number</th>
-        <th>Price of your Trip</th>
+        <th>Price Of Your Trips</th>
         <th>Action</th>
 
     </tr>
@@ -29,11 +29,10 @@
         <td th:text="${customer.firstName}"></td>
         <td th:text="${customer.lastName}"></td>
         <td th:text="${customer.passportNumber}"></td>
-        <td th:text="${customer.price}"></td>
+        <td ></td>
         <td class="trip-image">
             <div><a class="button" th:href="'/addCustomer/edit/' + ${customer.id}">Edit Customer</a></div>
             <div><a class="button" th:href="'/addCustomer/delete/' + ${customer.id}">Delete Customer</a></div>
-            <div><a class="button" th:href="'/home'">Renegotiate the price</a></div>
         </td>
     </tr>
     </tbody>

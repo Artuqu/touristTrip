@@ -2,17 +2,10 @@ package touristTrip.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import touristTrip.entity.Conductor;
-import touristTrip.entity.Customer;
-import touristTrip.entity.Trip;
-import touristTrip.entity.TripDate;
-import touristTrip.repository.ConductorRepository;
-import touristTrip.repository.CustomerRepository;
-import touristTrip.repository.TripDateRepository;
-import touristTrip.repository.TripRepository;
+import touristTrip.entity.*;
+import touristTrip.repository.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class JpaTouristService implements TouristService {
@@ -22,13 +15,16 @@ public class JpaTouristService implements TouristService {
     TripDateRepository tripDateRepository;
     TripRepository tripRepository;
 
+    CustomerTripsRepository customerTripsRepository;
+
     @Autowired
     JpaTouristService(ConductorRepository conductorRepository, CustomerRepository customerRepository,
-                      TripDateRepository tripDateRepository, TripRepository tripRepository) {
+                      TripDateRepository tripDateRepository, TripRepository tripRepository, CustomerTripsRepository customerTripsRepository) {
         this.conductorRepository = conductorRepository;
         this.customerRepository = customerRepository;
         this.tripDateRepository = tripDateRepository;
         this.tripRepository = tripRepository;
+        this.customerTripsRepository = customerTripsRepository;
     }
 
     @Override
@@ -37,14 +33,15 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
+    public Conductor findConductor(Long id) {
+        return conductorRepository.getOne(id);
+    }
+
+    @Override
     public Customer save(Customer customer) {
         return customerRepository.save(customer);
     }
 
-    @Override
-    public Optional<Customer> findCustomerList(Long customerId) {
-        return customerRepository.findById(customerId);
-    }
 
     @Override
     public Customer findCustomer(Long customerId) {
@@ -58,9 +55,10 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
-    public Optional<Trip> findTripList(Long tripId) {
-        return tripRepository.findById(tripId);
+    public CustomerTrips save(CustomerTrips customerTrips) {
+        return customerTripsRepository.save(customerTrips);
     }
+
 
     @Override
     public Trip findTrip(Long tripId) {
@@ -96,4 +94,21 @@ public class JpaTouristService implements TouristService {
     public List<TripDate> getAllStartDates(Long tripId) {
         return tripDateRepository.findAllTripDatesByTripId(tripId);
     }
+
+    @Override
+    public TripDate findTripStartDate(Long id) {
+        return tripDateRepository.getOne(id);
+    }
+
+    @Override
+    public Object getMostWanted() {
+        return tripRepository.mostWanted();
+    }
+
+    @Override
+    public List<Customer> customersWithoutTrip() {
+        return customerRepository.customersWithoutTrip();
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package touristTrip.controller;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import touristTrip.entity.Customer;
+import touristTrip.entity.CustomerTrips;
 import touristTrip.entity.Trip;
 import touristTrip.service.JpaTouristService;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/addTrip")
@@ -39,34 +40,28 @@ public class TripController {
     }
 
     @GetMapping("/addDestination/{id}")
-    public ModelAndView getDestinationTrip(ModelAndView mav, @PathVariable Long id) {
+    public ModelAndView getDestinationTrip(ModelAndView mav, @PathVariable long id) {
         mav.setViewName("trip/destination");
         mav.addObject("customer", jpaTouristService.findAllCustomers());
         mav.addObject("trip", jpaTouristService.findTrip(id));
         mav.addObject("date", jpaTouristService.getAllStartDates(id));
+//        mav.addObject("conductor", jpaTouristService.findConductor());
+        mav.addObject("customerTrip", new CustomerTrips());
         return mav;
     }
 
-    @PostMapping("/addDestination/{tripId}")
-    public String postCzechTrip(@ModelAttribute("customer") @Valid Customer customer, BindingResult result, Model model, @PathVariable List<Trip> tripId, @PathVariable Long id) {
+
+    @PostMapping("/addDestination")
+    public String postDestinationTrip(@ModelAttribute("customerTrip") @Valid CustomerTrips customerTrips, BindingResult result, ModelAndView mav) {
         if (result.hasErrors()) {
             return "trip/destination";
         }
-
-        model.addAttribute("customer", customer);
-        Trip searchTrip = jpaTouristService.findTrip(id);
-        System.out.println(searchTrip);
-        Customer customerToSave = jpaTouristService.findCustomer(customer.getId());
-        System.out.println(customerToSave.getId());
-        customerToSave.setTrips(tripId);
-        customerToSave.setPrice(searchTrip.getPrice());
-        jpaTouristService.save(customerToSave);
-
+//        customerTrips.setTrip(jpaTouristService.findTrip(id));
         try {
-            jpaTouristService.save(customerToSave);
+            jpaTouristService.save(customerTrips);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            model.addAttribute("message", "Operation failed.");
+            mav.addObject("message", "Operation failed.");
             return "trip/destination";
         }
 

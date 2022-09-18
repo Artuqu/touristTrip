@@ -20,10 +20,6 @@ public class Customer {
 
     private String passportNumber;
 
-    private double price;
-
-    @ManyToMany
-    @JoinColumn(name = "trip_id")
-    private List<Trip> trips;
-
+    @OneToMany(mappedBy = "customer", orphanRemoval = true)
+    private List<CustomerTrips> customerTrips;
 }
