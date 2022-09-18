@@ -2,10 +2,8 @@ package touristTrip.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Entity
@@ -21,6 +19,6 @@ public class TripDate {
 
     private LocalDate endDate;
 
-    @OneToOne(mappedBy = "tripDate", orphanRemoval = true)
+    @OneToOne(mappedBy = "tripDate")
     private CustomerTrips customerTrips;
 }

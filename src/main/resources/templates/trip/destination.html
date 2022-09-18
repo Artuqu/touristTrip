@@ -10,24 +10,24 @@
 <div th:insert="menu.html :: div"></div>
 <form class="login-form" action="/addTrip/addDestination" method="post" th:object="${customerTrip}">
     <h1 class="title login-element">Book your trip</h1>
-        <input class=" input login-element" type="hidden" name="tripId" id="tripId" th:value="${trip.id}">
+        <input class=" input login-element" type="hidden" th:value="${trip.id}" name="tripId">
     <div class="text login-element" th:text="'Destination: ' + ${trip.destination}"></div>
     <br>
     <div class="text login-element">Select date of trip</div>
-    <select class="text login-element" type="date" name="tripDateId" id="tripDateId">
+    <select class="text login-element" type="date" name="tripDateId">
         <option th:each="date: ${date}"
                 th:value="${date.id}"
                 th:text="${date.startDate} +' - '+ ${date.endDate}">
         </option>
     </select>
-    <!--    <div class="text login-element" th:text="${conductor.fullName}"></div>-->
-    <!--    <input  class=" input login-element" th:value="${conductor.id}"  type="text" name="conductorId">-->
+        <div class="text login-element" th:text="'Your conductor is: ' + ${conductor.fullName}"></div>
+        <input  class=" input login-element" th:value="${conductor.id}"  type="hidden" name="conductorId">
     <div class="text login-element" th:text="'Suggested Price: ' + ${trip.price} +'$ /person'"></div>
     <input class=" input login-element" type="hidden" name="price" th:value="${trip.price}" id="price">
     <button class="button login-element" value="Change Price" type="button" id="changePrice">Change Price</button>
     <br>
     <div class="text login-element">Add Customer</div>
-    <select class="text login-element" type="text" id="customerId" th:name="customerId">
+    <select class="text login-element" type="text" th:name="customerId">
         <option th:each="customer: ${customer}"
                 th:value="${customer.id}"
                 th:text="${customer.firstName} + ' ' + ${customer.lastName} + ' '+ ${customer.passportNumber}"></option>

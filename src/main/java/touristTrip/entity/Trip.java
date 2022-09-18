@@ -26,6 +26,6 @@ public class Trip {
     @JoinColumn(name = "tripId")
     private TripDate tripDate;
 
-    @OneToMany(mappedBy = "trip", orphanRemoval = true)
+    @OneToMany(mappedBy = "trip")
     private List<CustomerTrips> customerTrips;
 }

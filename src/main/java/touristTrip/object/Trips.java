@@ -1,6 +1,5 @@
 package touristTrip.object;
 
-import ch.qos.logback.core.pattern.Converter;
 import lombok.Data;
 
 @Data
