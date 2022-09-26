@@ -40,7 +40,7 @@ public class TripController {
     @GetMapping("/addDestination/{id}")
     public ModelAndView getDestinationTrip(ModelAndView mav, @PathVariable long id) {
         mav.setViewName("trip/destination");
-        mav.addObject("customerTrip", new CustomerTrips());
+        mav.addObject("customerTrips", new CustomerTrips());
         mav.addObject("customer", jpaTouristService.findAllCustomers());
         mav.addObject("trip", jpaTouristService.findTrip(id));
         mav.addObject("date", jpaTouristService.getAllStartDates(id));
@@ -50,7 +50,8 @@ public class TripController {
 
 
     @PostMapping("/addDestination")
-    public String postDestinationTrip(@ModelAttribute("customerTrip") CustomerTrips customerTrips, BindingResult result, ModelAndView mav) {
+    public String postDestinationTrip(@ModelAttribute("customerTrips") CustomerTrips customerTrips,
+                                       BindingResult result, ModelAndView mav) {
         if (result.hasErrors()) {
             return "trip/destination";
         }

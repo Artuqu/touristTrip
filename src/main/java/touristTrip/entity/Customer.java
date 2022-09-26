@@ -3,6 +3,7 @@ package touristTrip.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
 import java.util.List;
 

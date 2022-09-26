@@ -23,7 +23,7 @@ public class DetailsController {
         modelAndView.setViewName("/details");
         modelAndView.addObject("mostWanted", jpaTouristService.getMostWanted());
         modelAndView.addObject("customersWithoutTrip", jpaTouristService.customersWithoutTrip());
-//        modelAndView.addObject("avgPrice", jpaTouristService.avgPriceList());
+        modelAndView.addObject("avgPrice", jpaTouristService.avgPriceList().toString());
         return modelAndView;
     }
 
