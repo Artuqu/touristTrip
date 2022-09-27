@@ -1,8 +1,11 @@
 package touristTrip.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import touristTrip.entity.*;
+import touristTrip.object.PriceSum;
 import touristTrip.object.Trips;
 import touristTrip.repository.*;
 
@@ -16,16 +19,20 @@ public class JpaTouristService implements TouristService {
     TripDateRepository tripDateRepository;
     TripRepository tripRepository;
 
+    EntityManager em;
+
     CustomerTripsRepository customerTripsRepository;
 
     @Autowired
     JpaTouristService(ConductorRepository conductorRepository, CustomerRepository customerRepository,
-                      TripDateRepository tripDateRepository, TripRepository tripRepository, CustomerTripsRepository customerTripsRepository) {
+                      TripDateRepository tripDateRepository, TripRepository tripRepository,
+                      CustomerTripsRepository customerTripsRepository, EntityManager em) {
         this.conductorRepository = conductorRepository;
         this.customerRepository = customerRepository;
         this.tripDateRepository = tripDateRepository;
         this.tripRepository = tripRepository;
         this.customerTripsRepository = customerTripsRepository;
+        this.em = em;
     }
 
     @Override
@@ -118,8 +125,15 @@ public class JpaTouristService implements TouristService {
 
     @Override
     public List<Trips> avgPriceList() {
-        return tripRepository.avgPrices();
+        TypedQuery<Trips> query = em.createQuery("SELECT new touristTrip.object.Trips(t.id, t.destination, avg(ct.price)) FROM Trip t RIGHT JOIN CustomerTrips ct ON ct.trip=t.id GROUP BY t.id", Trips.class);
+        List result = query.getResultList();
+        return result;
     }
 
-
+    @Override
+    public List<PriceSum> getSum() {
+        TypedQuery<PriceSum> query = em.createQuery("SELECT new touristTrip.object.PriceSum (count(t.id), t.destination, sum(ct.price) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON t.id=ct.trip GROUP BY t.id", PriceSum.class);
+        List result = query.getResultList();
+        return result;
+    }
 }

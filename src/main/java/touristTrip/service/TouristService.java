@@ -1,6 +1,7 @@
 package touristTrip.service;
 
 import touristTrip.entity.*;
+import touristTrip.object.PriceSum;
 import touristTrip.object.Trips;
 
 import java.util.List;
@@ -46,6 +47,8 @@ public interface TouristService {
     void deleteAllCustomerTrips(Long customerId);
 
     List<Trips> avgPriceList();
+
+    List<PriceSum> getSum();
 
 
 }
