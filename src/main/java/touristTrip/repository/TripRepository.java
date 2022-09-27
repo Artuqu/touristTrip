@@ -11,8 +11,8 @@ import java.util.List;
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
 
-    @Query(value = "Select count(max(t.id)), destination from Trip t INNER JOIN customerTrips ct on ct.trip=t.id")
-    List<Trip> mostWanted();
+    @Query(value = "Select destination from Trip t INNER JOIN customerTrips ct on ct.trip=t.id group by t.id order by count(t.id) desc limit 1")
+    Object mostWanted();
 
 
 }

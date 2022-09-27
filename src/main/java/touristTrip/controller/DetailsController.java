@@ -21,7 +21,7 @@ public class DetailsController {
     @GetMapping("")
     public ModelAndView getDetailsView(ModelAndView modelAndView){
         modelAndView.setViewName("/details");
-//        modelAndView.addObject("mostWanted", jpaTouristService.getMostWanted());
+        modelAndView.addObject("mostWanted", jpaTouristService.getMostWanted());
         modelAndView.addObject("customersWithoutTrip", jpaTouristService.customersWithoutTrip());
         modelAndView.addObject("avgPrice", jpaTouristService.avgPriceList());
         modelAndView.addObject("sumPrice", jpaTouristService.getSum());

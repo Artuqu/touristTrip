@@ -8,8 +8,9 @@
 <body>
 <div th:insert="menu.html :: div"></div>
 <h3>All Details Are Below</h3><br>
-<div><h4>Most Wanted Destination</h4></div>
+<div><h4>Most Wanted Destination:</h4></div>
 <span th:text="${mostWanted}"></span>
+<br>
 <br>
 <div><h4>Customers Without Trip</h4></div>
 <table border="2">
@@ -29,8 +30,8 @@
     </tbody>
 </table>
 <br>
-<div><h4>Details About Price Of All Trip</h4></div>
-<br>
+<div><h3>Details About Price Of All Trip</h3></div>
+
 <div><h4>AVG Price of Trip</h4></div>
 <table border="2">
     <tr>
