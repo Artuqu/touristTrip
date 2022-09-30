@@ -1,8 +1,12 @@
 package touristTrip.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Constraint;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.hibernate.validator.internal.constraintvalidators.bv.PatternValidator;
+import touristTrip.validator.PassportInterface;
+import touristTrip.validator.PassportValidator;
 
 import java.util.List;
 
@@ -20,6 +24,7 @@ public class Customer {
     @NotBlank(message ="Please write your last name")
     private String lastName;
 
+    @PassportInterface
     @NotBlank(message ="Please write your passport number")
     private String passportNumber;
 
