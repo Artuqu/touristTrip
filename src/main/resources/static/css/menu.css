@@ -99,3 +99,6 @@ body {
 .slider .visible{
     display: inline-block;
 }
+
+.error{
+color:red;}

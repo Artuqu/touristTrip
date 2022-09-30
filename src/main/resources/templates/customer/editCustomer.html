@@ -17,6 +17,11 @@
     <input class="input login-element" type="text" name="lastName" th:value="*{lastName}">
     <div class="text login-element">New Passport Number:</div>
     <input class="input login-element" type="text" name="passportNumber" th:value="*{passportNumber}">
+    <div th:if="${#fields.hasAnyErrors()}">
+        <ul>
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+        </ul>
+    </div>
     <p>
         <input class="button login-element" type="submit" name="submit" value="Edit">
     </p>

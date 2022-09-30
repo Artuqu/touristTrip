@@ -125,14 +125,14 @@ public class JpaTouristService implements TouristService {
 
     @Override
     public List<Trips> avgPriceList() {
-        TypedQuery<Trips> query = em.createQuery("SELECT new touristTrip.object.Trips(t.id, t.destination, avg(ct.price)) FROM Trip t RIGHT JOIN CustomerTrips ct ON ct.trip=t.id GROUP BY t.id", Trips.class);
+        TypedQuery<Trips> query = em.createQuery("SELECT new touristTrip.object.Trips(t.id, t.destination, Round(avg(ct.price),2)  ) FROM Trip t RIGHT JOIN CustomerTrips ct ON ct.trip=t.id GROUP BY t.id", Trips.class);
         List result = query.getResultList();
         return result;
     }
 
     @Override
     public List<PriceSum> getSum() {
-        TypedQuery<PriceSum> query = em.createQuery("SELECT new touristTrip.object.PriceSum (count(t.id), t.destination, sum(ct.price) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON t.id=ct.trip GROUP BY t.id", PriceSum.class);
+        TypedQuery<PriceSum> query = em.createQuery("SELECT new touristTrip.object.PriceSum (count(t.id), t.destination, Round(sum(ct.price),2) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON t.id=ct.trip GROUP BY t.id", PriceSum.class);
         List result = query.getResultList();
         return result;
     }

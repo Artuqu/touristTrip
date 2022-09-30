@@ -3,7 +3,6 @@ package touristTrip.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
 
 import java.util.List;
 
@@ -14,11 +13,14 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Can't be blank")
+
+    @NotBlank(message ="Please write your first name")
     private String firstName;
-    @NotBlank
+
+    @NotBlank(message ="Please write your last name")
     private String lastName;
 
+    @NotBlank(message ="Please write your passport number")
     private String passportNumber;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)

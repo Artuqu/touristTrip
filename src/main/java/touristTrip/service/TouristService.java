@@ -5,7 +5,6 @@ import touristTrip.object.PriceSum;
 import touristTrip.object.Trips;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TouristService {
 

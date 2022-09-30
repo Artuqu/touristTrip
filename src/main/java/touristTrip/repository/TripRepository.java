@@ -5,8 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import touristTrip.entity.Trip;
 
-import java.util.List;
-
 @Repository
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
