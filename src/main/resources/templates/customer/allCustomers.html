@@ -25,7 +25,7 @@
 
 
     <tr th:each="customer : ${customers}">
-        <td th:text="${customer.id}"></td>
+        <td th:text="${customerStat.count}"></td>
         <td th:text="${customer.firstName}"></td>
         <td th:text="${customer.lastName}"></td>
         <td th:text="${customer.passportNumber}"></td>

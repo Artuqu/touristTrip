@@ -12,8 +12,8 @@
 
 <div class="trip-image">
     <button class="button" id="prevButton">Prev</button>
-    <ul class="slider" id="slider1" >
-        <li th:each="trip:${trip}"><img th:src="${trip.images}">
+    <ul class="slider" id="slider1">
+        <li th:each="trip:${trip}"><img th:src="${trip.images}" class="image">
             <p th:text="'Destination: ' + ${trip.destination}"></p>
             <p th:text="${trip.description}"></p>
             <p><a th:href="'/addTrip/addDestination/' + ${trip.id}">Book your trip</a></p>

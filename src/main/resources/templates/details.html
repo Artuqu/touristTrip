@@ -9,7 +9,7 @@
 <div th:insert="menu.html :: div"></div>
 <h3>All Details Are Below</h3><br>
 <div><h4>Most Wanted Destination:</h4></div>
-<span th:text="${mostWanted}"></span>
+<span th:text="${mostWanted}" class="mostWanted"></span>
 <br>
 <br>
 <div><h4>Customers Without Trip</h4></div>
@@ -22,7 +22,7 @@
     </tr>
     <tbody>
     <tr th:each="customer : ${customersWithoutTrip}">
-        <td th:text="${customer.id}"></td>
+        <td th:text="${customerStat.count}"></td>
         <td th:text="${customer.firstName}"></td>
         <td th:text="${customer.lastName}"></td>
         <td th:text="${customer.passportNumber}"></td>
@@ -41,7 +41,7 @@
     </tr>
     <tbody>
     <tr th:each="trip : ${avgPrice}">
-    <td th:text="${trip.id}"></td>
+    <td th:text="${tripStat.count}"></td>
     <td th:text="${trip.destination}"></td>
     <td th:text="${trip.price}"></td>
     </tr>

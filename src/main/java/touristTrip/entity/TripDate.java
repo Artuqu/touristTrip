@@ -15,8 +15,10 @@ public class TripDate {
     private Long id;
 
     private Long tripId;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
