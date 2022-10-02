@@ -1,12 +1,10 @@
 package touristTrip.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.Constraint;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-import org.hibernate.validator.internal.constraintvalidators.bv.PatternValidator;
 import touristTrip.validator.PassportInterface;
-import touristTrip.validator.PassportValidator;
 
 import java.util.List;
 
@@ -24,7 +22,9 @@ public class Customer {
     @NotBlank(message ="Please write your last name")
     private String lastName;
 
+
     @PassportInterface
+//    @Pattern(regexp = "^\\D{2}[0-9]{7}$", message = "Incorrect passport number")
     @NotBlank(message ="Please write your passport number")
     private String passportNumber;
 

@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface PassportInterface {
 
 
-    String message() default "{Incorrect passport number!}";
+    String message() default "Incorrect passport number!";
 
     Class<?>[] groups() default {};
 

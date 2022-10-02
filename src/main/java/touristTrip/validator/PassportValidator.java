@@ -14,7 +14,7 @@ private Pattern pattern;
 
 private Matcher matcher;
 
-private static final String passportPattern = "";
+private static final String passportPattern = "^\\D{2}[0-9]{7}$";
 
 
     @Override
