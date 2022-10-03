@@ -3,7 +3,7 @@ package touristTrip.object;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class PriceSum {
+public class SumPrice {
 
     public Long id;
 

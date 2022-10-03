@@ -24,7 +24,7 @@ public class TripController {
     }
 
     public String saveTrip(@ModelAttribute("trip") @Valid Trip trip, Model model) {
-        model.addAttribute("trip", trip);
+        model.addAttribute(trip);
         jpaTouristService.save(trip);
         return "/addCustomer/allCustomers";
     }

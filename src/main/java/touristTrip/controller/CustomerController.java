@@ -41,7 +41,7 @@ public class CustomerController {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         }
-        model.addAttribute("customer", customer);
+        model.addAttribute(customer);
         this.jpaTouristService.save(customer);
         return "redirect:/addCustomer/allCustomers";
     }

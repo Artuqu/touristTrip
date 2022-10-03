@@ -3,7 +3,7 @@ package touristTrip.object;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class Trips {
+public class AvgPrice {
 
     public Long id;
 

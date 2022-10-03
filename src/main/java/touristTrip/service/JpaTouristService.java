@@ -1,12 +1,13 @@
 package touristTrip.service;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import touristTrip.entity.*;
-import touristTrip.object.PriceSum;
-import touristTrip.object.Trips;
+import touristTrip.object.SumPrice;
+import touristTrip.object.AvgPrice;
 import touristTrip.repository.*;
 
 import java.util.List;
@@ -14,14 +15,16 @@ import java.util.List;
 @Service
 public class JpaTouristService implements TouristService {
 
-    ConductorRepository conductorRepository;
-    CustomerRepository customerRepository;
-    TripDateRepository tripDateRepository;
-    TripRepository tripRepository;
+    private ConductorRepository conductorRepository;
+    private CustomerRepository customerRepository;
+    private TripDateRepository tripDateRepository;
+    private TripRepository tripRepository;
+    @PersistenceContext
+    private EntityManager em;
 
-    EntityManager em;
-
-    CustomerTripsRepository customerTripsRepository;
+    private CustomerTripsRepository customerTripsRepository;
+    private String startDate = "'2022-01-01'";
+    private String endDate = "'2023-12-31'";
 
     @Autowired
     JpaTouristService(ConductorRepository conductorRepository, CustomerRepository customerRepository,
@@ -124,16 +127,19 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
-    public List<Trips> avgPriceList() {
-        TypedQuery<Trips> query = em.createQuery("SELECT new touristTrip.object.Trips(t.id, t.destination, Round(avg(ct.price),2)  ) FROM Trip t RIGHT JOIN CustomerTrips ct ON ct.trip=t.id GROUP BY t.id", Trips.class);
+    public List<AvgPrice> avgPriceList() {
+        TypedQuery<AvgPrice> query = em.createQuery("SELECT new touristTrip.object.AvgPrice(t.id, t.destination, Round(avg(ct.price),2) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON ct.trip=t.id JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", AvgPrice.class);
         List result = query.getResultList();
         return result;
     }
 
+    //, td.startDate RIGHT JOIN ct.TripDate td WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + " GROUP BY t.id, td.id
     @Override
-    public List<PriceSum> getSum() {
-        TypedQuery<PriceSum> query = em.createQuery("SELECT new touristTrip.object.PriceSum (count(t.id), t.destination, Round(sum(ct.price),2) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON t.id=ct.trip GROUP BY t.id", PriceSum.class);
+    public List<SumPrice> getSum() {
+        TypedQuery<SumPrice> query = em.createQuery("SELECT new touristTrip.object.SumPrice (count(t.id), t.destination, Round(sum(ct.price),2) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON t.id=ct.trip JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", SumPrice.class);
         List result = query.getResultList();
         return result;
     }
+
+
 }

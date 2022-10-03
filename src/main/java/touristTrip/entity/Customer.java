@@ -23,8 +23,9 @@ public class Customer {
     private String lastName;
 
 
-    @PassportInterface
-//    @Pattern(regexp = "^\\D{2}[0-9]{7}$", message = "Incorrect passport number")
+//    @PassportInterface
+    @Pattern(regexp = "^\\D{2}[0-9]{7}$", message = "Incorrect passport number")
+    @Column(unique = true)
     @NotBlank(message ="Please write your passport number")
     private String passportNumber;
 

@@ -9,6 +9,7 @@ import touristTrip.entity.Trip;
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
 
+
     @Query(value = "Select destination from Trip t INNER JOIN customerTrips ct on ct.trip=t.id group by t.id order by count(t.id) desc limit 1")
     Object mostWanted();
 
