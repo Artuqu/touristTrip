@@ -1,6 +1,6 @@
-## Do poprawnego działania programu niezbędne jest dodanie następujących zapytań w SQL:
+## For the correct operation of the program, it is necessary to add the following queries in SQL:
 
-### Całość danych znajduje się w pliku tables.sql w katalogu resources/sql
+### All data you need is in file tables.sql, path:resources/sql
 
 insert into Conductor (id,full_name,pesel) values
 (1,'Roman Wojtkowski', 88021256633),
