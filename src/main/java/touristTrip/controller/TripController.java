@@ -3,7 +3,6 @@ package touristTrip.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,12 +20,6 @@ public class TripController {
     @Autowired
     TripController(JpaTouristService jpaTouristService) {
         this.jpaTouristService = jpaTouristService;
-    }
-
-    public String saveTrip(@ModelAttribute("trip") @Valid Trip trip, Model model) {
-        model.addAttribute(trip);
-        jpaTouristService.save(trip);
-        return "/addCustomer/allCustomers";
     }
 
 

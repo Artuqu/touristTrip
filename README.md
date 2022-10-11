@@ -1,3 +1,5 @@
+# App for tourist office manage
+
 ## For the correct operation of the program, it is necessary to add the following queries in SQL:
 
 ### All data you need is in file tables.sql, path:resources/sql

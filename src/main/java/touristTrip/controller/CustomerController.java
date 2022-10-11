@@ -37,11 +37,10 @@ public class CustomerController {
     }
 
     @PostMapping("")
-    public String addCustomerPostWithTrip(@ModelAttribute("customer") @Valid Customer customer, BindingResult result, Model model) {
+    public String addCustomerPostWithTrip(@Valid Customer customer, BindingResult result) {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         }
-        model.addAttribute(customer);
         this.jpaTouristService.save(customer);
         return "redirect:/addCustomer/allCustomers";
     }
@@ -54,7 +53,7 @@ public class CustomerController {
     }
 
     @PostMapping("/edit")
-    public String editCustomerPost(@ModelAttribute("customer") @Valid Customer customer, BindingResult result, Model model) {
+    public String editCustomerPost(@Valid Customer customer, BindingResult result) {
         if (result.hasErrors()) {
             return "customer/editCustomer";
         }
@@ -63,7 +62,6 @@ public class CustomerController {
         newCustomer.setLastName(customer.getLastName());
         newCustomer.setPassportNumber(customer.getPassportNumber());
         this.jpaTouristService.save(newCustomer);
-        model.addAttribute("customer", newCustomer);
         return "redirect:allCustomers";
 
     }

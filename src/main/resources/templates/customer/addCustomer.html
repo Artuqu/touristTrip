@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:insert="menu.html :: div"></div>
-<form class="login-form" action="/addCustomer" method="post" th:object="${customer}">
+<form class="login-form" method="post" th:object="${customer}">
     <h1 class="title login-element">New Customer</h1>
     <div class="text login-element">Name:</div>
     <input class=" input login-element" type="text" name="firstName">

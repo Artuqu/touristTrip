@@ -128,15 +128,16 @@ public class JpaTouristService implements TouristService {
 
     @Override
     public List<AvgPrice> avgPriceList() {
-        TypedQuery<AvgPrice> query = em.createQuery("SELECT new touristTrip.object.AvgPrice(t.id, t.destination, Round(avg(ct.price),2) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON ct.trip=t.id JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", AvgPrice.class);
+        TypedQuery<AvgPrice> query = em.createQuery("SELECT new touristTrip.object.AvgPrice(t.id, t.destination, Round(avg(ct.price),2) ) FROM Trip t " +
+                "INNER JOIN CustomerTrips ct ON ct.trip=t.id INNER JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", AvgPrice.class);
         List result = query.getResultList();
         return result;
     }
 
-    //, td.startDate RIGHT JOIN ct.TripDate td WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + " GROUP BY t.id, td.id
     @Override
     public List<SumPrice> getSum() {
-        TypedQuery<SumPrice> query = em.createQuery("SELECT new touristTrip.object.SumPrice (count(t.id), t.destination, Round(sum(ct.price),2) ) FROM Trip t RIGHT JOIN CustomerTrips ct ON t.id=ct.trip JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", SumPrice.class);
+        TypedQuery<SumPrice> query = em.createQuery("SELECT new touristTrip.object.SumPrice (count(t.id), t.destination, Round(sum(ct.price),2) ) FROM Trip t " +
+                "INNER JOIN CustomerTrips ct ON t.id=ct.trip INNER JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", SumPrice.class);
         List result = query.getResultList();
         return result;
     }
