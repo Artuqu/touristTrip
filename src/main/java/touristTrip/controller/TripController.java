@@ -1,13 +1,11 @@
 package touristTrip.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import touristTrip.entity.CustomerTrips;
-import touristTrip.entity.Trip;
 import touristTrip.service.JpaTouristService;
 
 
@@ -21,7 +19,6 @@ public class TripController {
     TripController(JpaTouristService jpaTouristService) {
         this.jpaTouristService = jpaTouristService;
     }
-
 
     @GetMapping("")
     public ModelAndView getTripView(ModelAndView mav) {
@@ -42,7 +39,7 @@ public class TripController {
     }
 
 
-    @PostMapping("/addDestination")
+    @PostMapping("/addDestination/{id}")
     public String postDestinationTrip(@ModelAttribute("customerTrips") CustomerTrips customerTrips,
                                        BindingResult result, ModelAndView mav) {
         if (result.hasErrors()) {

@@ -1,13 +1,8 @@
 package touristTrip.service;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import touristTrip.entity.*;
-import touristTrip.object.SumPrice;
-import touristTrip.object.AvgPrice;
 import touristTrip.repository.*;
 
 import java.util.List;

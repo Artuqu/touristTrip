@@ -1,8 +1,6 @@
 package touristTrip.service;
 
 import touristTrip.entity.*;
-import touristTrip.object.AvgPrice;
-import touristTrip.object.SumPrice;
 
 import java.util.List;
 
