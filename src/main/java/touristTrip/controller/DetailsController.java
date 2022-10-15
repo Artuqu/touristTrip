@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import touristTrip.repository.TripRepositoryImpl;
 import touristTrip.service.JpaTouristService;
 
 @Controller
@@ -13,9 +14,12 @@ public class DetailsController {
 
     private final JpaTouristService jpaTouristService;
 
+    private final TripRepositoryImpl tripRepository;
+
     @Autowired
-    DetailsController(JpaTouristService jpaTouristService){
+    DetailsController(JpaTouristService jpaTouristService, TripRepositoryImpl tripRepository){
         this.jpaTouristService=jpaTouristService;
+        this.tripRepository=tripRepository;
     }
 
     @GetMapping("")
@@ -23,8 +27,8 @@ public class DetailsController {
         modelAndView.setViewName("/details");
         modelAndView.addObject("mostWanted", jpaTouristService.getMostWanted());
         modelAndView.addObject("customersWithoutTrip", jpaTouristService.customersWithoutTrip());
-        modelAndView.addObject("avgPrice", jpaTouristService.avgPriceList());
-        modelAndView.addObject("sumPrice", jpaTouristService.getSum());
+        modelAndView.addObject("avgPrice", tripRepository.avgPriceList());
+        modelAndView.addObject("sumPrice", tripRepository.getSum());
         return modelAndView;
     }
 

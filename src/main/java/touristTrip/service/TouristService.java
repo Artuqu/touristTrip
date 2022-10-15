@@ -45,9 +45,9 @@ public interface TouristService {
 
     void deleteAllCustomerTrips(Long customerId);
 
-    List<AvgPrice> avgPriceList();
-
-    List<SumPrice> getSum();
+//    List<AvgPrice> avgPriceList();
+//
+//    List<SumPrice> getSum();
 
 
 

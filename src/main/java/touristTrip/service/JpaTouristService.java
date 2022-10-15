@@ -15,27 +15,22 @@ import java.util.List;
 @Service
 public class JpaTouristService implements TouristService {
 
-    private ConductorRepository conductorRepository;
-    private CustomerRepository customerRepository;
-    private TripDateRepository tripDateRepository;
-    private TripRepository tripRepository;
-    @PersistenceContext
-    private EntityManager em;
+    private final ConductorRepository conductorRepository;
+    private final CustomerRepository customerRepository;
+    private final TripDateRepository tripDateRepository;
+    private final TripRepository tripRepository;
 
-    private CustomerTripsRepository customerTripsRepository;
-    private String startDate = "'2022-01-01'";
-    private String endDate = "'2023-12-31'";
+    private final CustomerTripsRepository customerTripsRepository;
 
     @Autowired
     JpaTouristService(ConductorRepository conductorRepository, CustomerRepository customerRepository,
                       TripDateRepository tripDateRepository, TripRepository tripRepository,
-                      CustomerTripsRepository customerTripsRepository, EntityManager em) {
+                      CustomerTripsRepository customerTripsRepository) {
         this.conductorRepository = conductorRepository;
         this.customerRepository = customerRepository;
         this.tripDateRepository = tripDateRepository;
         this.tripRepository = tripRepository;
         this.customerTripsRepository = customerTripsRepository;
-        this.em = em;
     }
 
     @Override
@@ -124,22 +119,6 @@ public class JpaTouristService implements TouristService {
     @Override
     public void deleteAllCustomerTrips(Long customerId) {
         customerTripsRepository.deleteAllCustomerTripsByCustomerId(customerId);
-    }
-
-    @Override
-    public List<AvgPrice> avgPriceList() {
-        TypedQuery<AvgPrice> query = em.createQuery("SELECT new touristTrip.object.AvgPrice(t.id, t.destination, Round(avg(ct.price),2) ) FROM Trip t " +
-                "INNER JOIN CustomerTrips ct ON ct.trip=t.id INNER JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", AvgPrice.class);
-        List result = query.getResultList();
-        return result;
-    }
-
-    @Override
-    public List<SumPrice> getSum() {
-        TypedQuery<SumPrice> query = em.createQuery("SELECT new touristTrip.object.SumPrice (count(t.id), t.destination, Round(sum(ct.price),2) ) FROM Trip t " +
-                "INNER JOIN CustomerTrips ct ON t.id=ct.trip INNER JOIN TripDate td ON td.id=ct.trip WHERE td.startDate BETWEEN " + startDate + " AND " + endDate + "GROUP BY t.id", SumPrice.class);
-        List result = query.getResultList();
-        return result;
     }
 
 
