@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import touristTrip.validator.PassportInterface;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class Customer {
     @NotBlank(message ="Please write your passport number")
     private String passportNumber;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "customer")
+    @Cascade(CascadeType.REMOVE)
     private List<CustomerTrips> customerTrips;
 }
