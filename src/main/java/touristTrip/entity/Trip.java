@@ -3,6 +3,7 @@ package touristTrip.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -16,7 +17,7 @@ public class Trip {
     private String destination;
     private String description;
 
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "conductor_id")

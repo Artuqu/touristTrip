@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import touristTrip.validator.PassportInterface;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package touristTrip.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -13,7 +13,7 @@ public class CustomerTrips {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne
     private Conductor conductor;
