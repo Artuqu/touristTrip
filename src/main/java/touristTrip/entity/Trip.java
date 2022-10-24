@@ -17,6 +17,7 @@ public class Trip {
     private String destination;
     private String description;
 
+    @Column(precision = 7, scale = 2)
     private BigDecimal price;
 
     @ManyToOne

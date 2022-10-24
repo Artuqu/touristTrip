@@ -13,6 +13,7 @@ public class CustomerTrips {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(precision = 7, scale = 2)
     private BigDecimal price;
 
     @ManyToOne
