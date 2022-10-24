@@ -31,6 +31,6 @@ public class Customer {
     private String passportNumber;
 
     @OneToMany(mappedBy = "customer")
-    @Cascade(CascadeType.REMOVE)
+    @Cascade(CascadeType.DELETE)
     private List<CustomerTrips> customerTrips;
 }

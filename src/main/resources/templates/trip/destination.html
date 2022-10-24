@@ -8,7 +8,7 @@
 </head>
 <body>
 <div th:insert="menu.html :: div"></div>
-<form class="login-form" method="post" th:object="${customerTrips}">
+<form class="login-form" action="/addTrip/addDestination" method="post" th:object="${customerTrips}">
     <h1 class="title login-element">Book your trip</h1>
         <input class=" input login-element" type="hidden" th:value="${trip.id}" name="trip">
     <div class="text login-element" th:text="'Destination: ' + ${trip.destination}"></div>

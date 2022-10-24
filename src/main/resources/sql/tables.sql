@@ -24,12 +24,3 @@ insert into Trip_Date (trip_id, start_date, end_date)values
 (5,'03.06.2023', '25.06.2023'), (5,'04.06.2023', '16.06.2023'),(5,'15.09.2023', '25.09.2023'),
 (6,'03.07.2023', '25.07.2023'), (6,'04.07.2023', '16.07.2023'),(6,'15.10.2023', '25.10.2023');
 
-
-Drop table conductor_trips;
-Drop table customer_trips;
-Drop table trip_customers;
-Drop table trip_trip_date;
-Drop table trip_date;
-Drop table customer;
-Drop table trip;
-Drop table conductor;
