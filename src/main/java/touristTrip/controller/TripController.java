@@ -40,21 +40,21 @@ public class TripController {
 
 
     @PostMapping("/addDestination")
-    public String postDestinationTrip(@ModelAttribute("customerTrips") CustomerTrips customerTrips,
+    public ModelAndView postDestinationTrip(@ModelAttribute("customerTrips") CustomerTrips customerTrips,
                                        BindingResult result, ModelAndView mav) {
         mav.setViewName("trip/destination");
         if (result.hasErrors()) {
-            return "trip/destination";
+            return new ModelAndView("trip/destination");
         }
         try {
             this.jpaTouristService.save(customerTrips);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             mav.addObject("message", "Operation failed.");
-            return "trip/destination";
+            return new ModelAndView("trip/destination");
         }
 
-        return "redirect:/addCustomer/allCustomers";
+        return new ModelAndView("redirect:/addCustomer/allCustomers");
     }
 
 

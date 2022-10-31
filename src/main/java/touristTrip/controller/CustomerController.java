@@ -3,7 +3,6 @@ package touristTrip.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,44 +36,45 @@ public class CustomerController {
     }
 
     @PostMapping("")
-    public String addCustomerPostWithTrip(@Valid Customer customer, BindingResult result) {
+    public ModelAndView addCustomerPostWithTrip(@Valid Customer customer, BindingResult result) {
         if (result.hasErrors()) {
-            return "customer/addCustomer";
+            return new ModelAndView("customer/addCustomer");
         }
         this.jpaTouristService.save(customer);
-        return "redirect:/addCustomer/allCustomers";
+        return new ModelAndView("redirect:/addCustomer/allCustomers");
     }
 
     //    edit
     @GetMapping("/edit/{id}")
-    public String editCustomer(@PathVariable Long id, Model model) {
-        model.addAttribute("customer", jpaTouristService.findCustomer(id));
-        return "customer/editCustomer";
+    public ModelAndView editCustomer(@PathVariable Long id, ModelAndView mav) {
+        mav.addObject("customer", jpaTouristService.findCustomer(id));
+        mav.setViewName("customer/editCustomer");
+        return mav;
     }
 
     @PostMapping("/edit")
-    public String editCustomerPost(@Valid Customer customer, BindingResult result) {
+    public ModelAndView editCustomerPost(@Valid Customer customer, BindingResult result) {
         if (result.hasErrors()) {
-            return "customer/editCustomer";
+            return new ModelAndView("customer/editCustomer");
         }
         Customer newCustomer = jpaTouristService.findCustomer(customer.getId());
         newCustomer.setFirstName(customer.getFirstName());
         newCustomer.setLastName(customer.getLastName());
         newCustomer.setPassportNumber(customer.getPassportNumber());
         this.jpaTouristService.save(newCustomer);
-        return "redirect:allCustomers";
+        return new ModelAndView("redirect:allCustomers");
 
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCustomer(@ModelAttribute("customer") @PathVariable Long id, Model model) {
+    public ModelAndView deleteCustomer(@ModelAttribute("customer") @PathVariable Long id, ModelAndView mav) {
         try {
             this.jpaTouristService.deleteCustomer(id);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            model.addAttribute("message", "Operation failed");
+            mav.addObject("message", "Operation failed");
         }
-        return "redirect:/addCustomer/allCustomers";
+        return new ModelAndView("redirect:/addCustomer/allCustomers");
     }
 
 }
