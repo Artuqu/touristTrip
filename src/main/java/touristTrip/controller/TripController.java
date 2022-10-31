@@ -44,7 +44,7 @@ public class TripController {
                                        BindingResult result, ModelAndView mav) {
         mav.setViewName("trip/destination");
         if (result.hasErrors()) {
-            return new ModelAndView("trip/destination");
+            return mav;
         }
         try {
             this.jpaTouristService.save(customerTrips);

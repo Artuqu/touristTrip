@@ -1,13 +1,20 @@
 package touristTrip.controller;
 
 import jakarta.validation.Valid;
+import org.hibernate.HibernateError;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import touristTrip.entity.Customer;
 import touristTrip.service.JpaTouristService;
+
+import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 
 @Controller
 @RequestMapping("/addCustomer")
@@ -53,15 +60,22 @@ public class CustomerController {
     }
 
     @PostMapping("/edit")
-    public ModelAndView editCustomerPost(@Valid Customer customer, BindingResult result) {
+    public ModelAndView editCustomerPost(@Valid Customer customer, BindingResult result, ModelAndView mav) {
+        mav.setViewName("customer/editCustomer");
         if (result.hasErrors()) {
-            return new ModelAndView("customer/editCustomer");
+            return mav;
         }
-        Customer newCustomer = jpaTouristService.findCustomer(customer.getId());
-        newCustomer.setFirstName(customer.getFirstName());
-        newCustomer.setLastName(customer.getLastName());
-        newCustomer.setPassportNumber(customer.getPassportNumber());
-        this.jpaTouristService.save(newCustomer);
+        try {
+            Customer newCustomer = jpaTouristService.findCustomer(customer.getId());
+            newCustomer.setFirstName(customer.getFirstName());
+            newCustomer.setLastName(customer.getLastName());
+            newCustomer.setPassportNumber(customer.getPassportNumber());
+            this.jpaTouristService.save(newCustomer);
+        } catch (DataIntegrityViolationException e) {
+            ObjectError error = new ObjectError("SQLError", "Passport number already exist!");
+            result.addError(error);
+            return mav;
+        }
         return new ModelAndView("redirect:allCustomers");
 
     }
