@@ -26,7 +26,7 @@ public class Customer {
 
 //    @PassportInterface
     @Pattern(regexp = "^\\D{2}[0-9]{7}$", message = "Incorrect passport number")
-    @Column(unique = true)
+    @Column(unique = true, columnDefinition = "char(9)")
     @NotBlank(message ="Please write your passport number")
     private String passportNumber;
 

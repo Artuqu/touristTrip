@@ -15,6 +15,7 @@ public class Conductor {
     private Long id;
     private String fullName;
     @PESEL
+    @Column(columnDefinition = "char(11)")
     private String pesel;
 
     @OneToMany(mappedBy = "conductor")
