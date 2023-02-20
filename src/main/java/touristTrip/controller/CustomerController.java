@@ -1,8 +1,6 @@
 package touristTrip.controller;
 
 import jakarta.validation.Valid;
-import org.hibernate.HibernateError;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -12,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import touristTrip.entity.Customer;
 import touristTrip.service.JpaTouristService;
-
-import java.sql.SQLException;
-import java.sql.SQLSyntaxErrorException;
 
 @Controller
 @RequestMapping("/addCustomer")
