@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" type="text/css" href="/css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html :: div"></div>
+<p></p>
+<h2 class="title login-element">Please login</h2>
+<form method="post">
+    <div><label class="text login-element"> User Name : <input class="input security-login" type="text" name="username"/>
+    </label></div>
+    <div><label class="text login-element"> Password: <input class="input login-element" type="password"
+                                                             name="password"/> </label></div>
+    <div><input class="button login-element" type="submit" value="Login"/></div>
+</form>
+</body>
+</html>
