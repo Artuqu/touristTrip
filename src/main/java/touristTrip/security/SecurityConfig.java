@@ -32,11 +32,23 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
+                .httpBasic().and()
                 .authorizeHttpRequests()
-                .requestMatchers("/home", "/css/**", "/images/**", "/js/**").permitAll()
+                .requestMatchers("/", "/home", "/css/**", "/images/**", "/js/**", "/addTrip").permitAll()
+//                .requestMatchers("/addTrip").hasAnyRole("USER")
                 .anyRequest().hasAnyRole("ADMIN")
                 .and()
-                .formLogin().permitAll();
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .permitAll()
+//        ;
+                .and()
+                .csrf().disable();
         return http.build();
     }
 
