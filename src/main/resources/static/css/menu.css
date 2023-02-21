@@ -20,7 +20,12 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
+.home{
+    margin-left: 20px;
+    max-width: 800px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .security-login{
     margin-right: 20px;
     max-width: 400px;
