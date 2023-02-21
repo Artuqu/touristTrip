@@ -41,7 +41,7 @@ public class TripController {
 
     @PostMapping("/addDestination")
     public ModelAndView postDestinationTrip(@ModelAttribute("customerTrips") CustomerTrips customerTrips,
-                                       BindingResult result, ModelAndView mav) {
+                                            BindingResult result, ModelAndView mav) {
         mav.setViewName("trip/destination");
         if (result.hasErrors()) {
             return mav;

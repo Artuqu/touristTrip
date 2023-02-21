@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import touristTrip.entity.*;
 import touristTrip.repository.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,7 +44,6 @@ public class JpaTouristService implements TouristService {
         return customerRepository.save(customer);
     }
 
-
     @Override
     public Customer findCustomer(Long customerId) {
         return customerRepository.getOne(customerId);
@@ -72,8 +72,8 @@ public class JpaTouristService implements TouristService {
     }
 
     @Override
-    public List<Customer> findAllCustomers() {
-        return customerRepository.findAll();
+    public ArrayList<Customer> findAllCustomers() {
+        return (ArrayList<Customer>) customerRepository.findAll();
     }
 
     @Override

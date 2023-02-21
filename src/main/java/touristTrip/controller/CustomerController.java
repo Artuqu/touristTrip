@@ -42,7 +42,13 @@ public class CustomerController {
         if (result.hasErrors()) {
             return new ModelAndView("customer/addCustomer");
         }
-        this.jpaTouristService.save(customer);
+        try {
+            this.jpaTouristService.save(customer);
+        } catch (DataIntegrityViolationException e) {
+            ObjectError error = new ObjectError("DuplicateError", "Passport number already exist!");
+            result.addError(error);
+            return new ModelAndView("customer/addCustomer");
+        }
         return new ModelAndView("redirect:/addCustomer/allCustomers");
     }
 
@@ -67,7 +73,7 @@ public class CustomerController {
             newCustomer.setPassportNumber(customer.getPassportNumber());
             this.jpaTouristService.save(newCustomer);
         } catch (DataIntegrityViolationException e) {
-            ObjectError error = new ObjectError("SQLError", "Passport number already exist!");
+            ObjectError error = new ObjectError("DuplicateError", "Passport number already exist!");
             result.addError(error);
             return mav;
         }

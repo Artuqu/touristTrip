@@ -21,6 +21,13 @@ body {
     margin-bottom: 5px;
 }
 
+.security-login{
+    margin-right: 20px;
+    max-width: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .start-page {
     margin-left: 20px;
     max-width: 400px;
@@ -37,6 +44,23 @@ body {
     font-family: "Nunito", sans-serif;
     transition: 0.3s;
     cursor: pointer;
+}
+
+.login{
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 550;
+    font-family: "Nunito", sans-serif;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: green;
+}
+
+.login:hover{
+    color: black;
+    background-color: red;
 }
 
 .menu-element:hover {

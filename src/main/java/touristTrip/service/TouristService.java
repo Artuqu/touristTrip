@@ -12,7 +12,6 @@ public interface TouristService {
 
     Customer save(Customer customer);
 
-
     Customer findCustomer(Long customerId);
 
     Trip save(Trip trip);
@@ -42,11 +41,5 @@ public interface TouristService {
     List<Customer> customersWithoutTrip();
 
     void deleteAllCustomerTrips(Long customerId);
-
-//    List<AvgPrice> avgPriceList();
-//
-//    List<SumPrice> getSum();
-
-
 
 }
