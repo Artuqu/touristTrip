@@ -24,3 +24,6 @@ insert into Trip_Date (trip_id, start_date, end_date)values
 (5,'03.06.2023', '25.06.2023'), (5,'04.06.2023', '16.06.2023'),(5,'15.09.2023', '25.09.2023'),
 (6,'03.07.2023', '25.07.2023'), (6,'04.07.2023', '16.07.2023'),(6,'15.10.2023', '25.10.2023');
 
+
+insert into User (user_name, password, enabled, role_id)values ('Marek1', 'admin1', true, 1);
+insert into Role (role_id, name)values (1, 'ROLE_ADMIN');

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div class="menu">
-    <div class="menu-separator-v"></div>
+    <div sec:authorize="isAuthenticated()" class="menu-separator-v"></div>
     <a sec:authorize="isAuthenticated()" class="menu-element" href="/addCustomer">Add customer</a>
     <div class="menu-separator-v"></div>
     <a class="menu-element" href="/addTrip">Select trip for you</a>
-    <div class="menu-separator-v"></div>
+    <div sec:authorize="isAuthenticated()" class="menu-separator-v"></div>
     <a sec:authorize="isAuthenticated()" class="menu-element" href="/addCustomer/allCustomers">Manage your customers</a>
-    <div class="menu-separator-v"></div>
+    <div sec:authorize="isAuthenticated()"class="menu-separator-v"></div>
     <a sec:authorize="isAuthenticated()" class="menu-element" href="/details">See all details</a>
-    <div class="menu-separator-v"></div>
+    <div sec:authorize="isAnonymous()" class="menu-separator-v"></div>
     <a sec:authorize="isAnonymous()" class="login" href="/login">Login</a>
-    <div class="menu-separator-v"></div>
+    <div sec:authorize="isAuthenticated()" class="menu-separator-v"></div>
     <a sec:authorize="isAuthenticated()" class="login" href="/logout">Logout</a>
     <div class="menu-separator-v"></div>
 </div>

@@ -5,27 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.pl.PESEL;
-
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Conductor {
-
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
     private Long id;
-    private String fullName;
-    @PESEL
-    @Column(columnDefinition = "char(11)")
-    private String pesel;
-
-    @OneToMany(mappedBy = "conductor")
-    private List<CustomerTrips> customerTrips;
-
-
+    private String name;
 }
