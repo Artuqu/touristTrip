@@ -15,6 +15,7 @@ public class LoginController {
         return mav;
     }
 
+
     @GetMapping("/logout")
     public ModelAndView logoutGetPage(ModelAndView mav) {
         mav.setViewName("login/logout");

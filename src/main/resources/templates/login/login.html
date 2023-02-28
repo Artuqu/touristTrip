@@ -15,6 +15,11 @@
     <div><label class="text login-element"> Password: <input class="input login-element" type="password"
                                                              name="password"/> </label></div>
     <div><input class="button login-element" type="submit" value="Login"/></div>
+<!--    <div th:if="${#fields.hasAnyErrors()}">-->
+<!--        <ul>-->
+<!--            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>-->
+<!--        </ul>-->
+<!--    </div>-->
 </form>
 </body>
 </html>
