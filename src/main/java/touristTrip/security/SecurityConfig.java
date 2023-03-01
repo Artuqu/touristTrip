@@ -15,11 +15,8 @@ import touristTrip.service.JpaUserDetailsService;
 public class SecurityConfig {
 
     JpaUserDetailsService detailsService;
-    SecurityAuthenticationProvider authenticationProvider;
 
-    SecurityConfig(JpaUserDetailsService detailsService) {
-        this.detailsService = detailsService;
-    }
+    SecurityAuthenticationProvider authenticationProvider;
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(detailsService);
@@ -30,7 +27,7 @@ public class SecurityConfig {
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/home", "/css/**", "/images/**", "/js/**", "/addTrip").permitAll()
+                .requestMatchers("/", "/home", "/css/**", "/images/**", "/js/**", "/addTrip", "/addUser").permitAll()
                 .anyRequest().hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()
@@ -49,4 +46,9 @@ public class SecurityConfig {
     BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    NoOpPasswordEncoder passwordEncoder() {
+//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+//    }
 }
