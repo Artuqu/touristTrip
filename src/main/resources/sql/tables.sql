@@ -26,3 +26,5 @@ insert into Trip_Date (trip_id, start_date, end_date)values
 
 
 insert into Role (role_id, name)values (1, 'ROLE_ADMIN');
+--insert into Users (username, password, enabled)values ('Marek1', 'admin1', true);
+--insert into user_role (user_id, role_id) values (1,1);

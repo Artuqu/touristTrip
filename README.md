@@ -1,9 +1,12 @@
 # App for tourist office manage
 
-## For the correct operation of the program, it is necessary to add the following queries in SQL:
+## For the correct operation of the program, it is necessary to add below queries in SQL.
 
 ### All data you need is in file tables.sql, path:resources/sql
 
+### Application secured by Spring Security. To get full version you need to be log in. Password is hashed by BCrypt.
+### First option to register the user with admin authority is to send the request by Postman, address: "localhost:8080/addUser", PostMapping, parameters send in Body form. You need tree keys: username, password and enabled.
+### Second disable Bean BCrypt in SecurityConfig and enable NoOpPasswordEncoder. After that you can add user just by SQL Query.
 insert into Conductor (id,full_name,pesel) values
 (1,'Roman Wojtkowski', 88021256633),
 (2,'Władysław Nop', 99030314845),
