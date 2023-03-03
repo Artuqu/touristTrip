@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import touristTrip.entity.Role;
@@ -19,14 +19,14 @@ public class JpaUserDetailsService implements UserDetailsService, UserService {
 
 
     final private UserRepository userRepository;
-    final private RoleRepository roleRepository;
-    final private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    RoleRepository roleRepository;
+    final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public JpaUserDetailsService(UserRepository userRepository, RoleRepository role, BCryptPasswordEncoder passwordEncoder) {
+    public JpaUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = role;
-        this.passwordEncoder=passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -42,8 +42,10 @@ public class JpaUserDetailsService implements UserDetailsService, UserService {
     public User saveUser(User user) {
         Assert.isNull(user.getId(), user + " is already in use");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Optional<Role> roleOptional = Optional.ofNullable(roleRepository.findByName("ADMIN"));
-        roleOptional.ifPresent(role -> user.getRoles().add(role));
+        Optional<Role> roleOptional = roleRepository.findByName("ADMIN");
+        if (roleOptional.isPresent()) {
+            user.getRoles().add(roleOptional.get());
+        }
         return userRepository.save(user);
     }
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import touristTrip.entity.User;
 import touristTrip.service.JpaUserDetailsService;
@@ -28,17 +27,22 @@ public class LoginController {
     }
 
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public ModelAndView logoutGetPage(ModelAndView mav) {
         mav.setViewName("login/logout");
         return mav;
     }
 
+    @GetMapping("/addUser")
+    public ModelAndView saveUser(ModelAndView mav){
+        mav.setViewName("/users/addUser");
+        return mav;
+    }
+
     @PostMapping("/addUser")
-    @ResponseBody
-    public String saveUser(String username, String password, boolean enabled) {
-        User user = new User(username, password, enabled);
-        detailsService.saveUser(user);
-        return "User with admin authority successful added.";
+    public ModelAndView saveUserPost(ModelAndView mav, User user) {
+        mav.setViewName("redirect:/login");
+        mav.addObject(detailsService.saveUser(user));
+        return mav;
     }
 }

@@ -1,10 +1,7 @@
 package touristTrip.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,6 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +18,6 @@ public class Role {
     private Integer id;
     private String name;
     @ManyToMany(mappedBy = "roles")
+    @ToString.Exclude
     private List<User> users;
 }
