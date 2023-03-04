@@ -1,8 +1,9 @@
 package touristTrip.entity;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,12 +30,7 @@ public class User implements UserDetails {
 
     private String password;
     private boolean enabled;
-
-    @Transactional
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
+    @Cascade(CascadeType.ALL)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

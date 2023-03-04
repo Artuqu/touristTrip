@@ -7,13 +7,16 @@
     <a class="menu-element" href="/addTrip">Select trip for you</a>
     <div sec:authorize="isAuthenticated()" class="menu-separator-v"></div>
     <a sec:authorize="isAuthenticated()" class="menu-element" href="/addCustomer/allCustomers">Manage your customers</a>
-    <div sec:authorize="isAuthenticated()"class="menu-separator-v"></div>
+    <div sec:authorize="isAuthenticated()" class="menu-separator-v"></div>
     <a sec:authorize="isAuthenticated()" class="menu-element" href="/details">See all details</a>
     <div sec:authorize="isAnonymous()" class="menu-separator-v"></div>
     <a sec:authorize="isAnonymous()" class="login" href="/login">Login</a>
     <div sec:authorize="isAuthenticated()" class="menu-separator-v"></div>
-    <a sec:authorize="isAuthenticated()" class="login" href="/logout">Logout</a>
+    <form action="/logout" method="post" class="login" sec:authorize="isAuthenticated()">
+        <button class="none-button"  type="submit">Logout</button>
+    </form>
     <div class="menu-separator-v"></div>
+
 </div>
 
 </html>

@@ -27,7 +27,6 @@ public class SecurityConfig {
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.cors()
                 .and()
-                .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/home", "/css/**", "/images/**", "/js/**", "/addTrip", "/addUser").permitAll()
                 .anyRequest().hasAnyRole("ADMIN", "USER")
@@ -40,7 +39,8 @@ public class SecurityConfig {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-                .permitAll();
+                .permitAll()
+                .and().csrf().ignoringRequestMatchers("/logout");
         return http.build();
     }
 

@@ -66,6 +66,7 @@ body {
 .login:hover{
     color: black;
     background-color: red;
+    cursor: pointer;
 }
 
 .menu-element:hover {
@@ -79,6 +80,8 @@ body {
 .none-button {
     border: none;
     background: none;
+    cursor: pointer;
+    color: white;
 }
 
 .button {

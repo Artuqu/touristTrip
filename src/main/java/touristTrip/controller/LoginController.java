@@ -26,13 +26,6 @@ public class LoginController {
         return mav;
     }
 
-
-    @PostMapping("/logout")
-    public ModelAndView logoutGetPage(ModelAndView mav) {
-        mav.setViewName("login/logout");
-        return mav;
-    }
-
     @GetMapping("/addUser")
     public ModelAndView saveUser(ModelAndView mav){
         mav.setViewName("/users/addUser");
