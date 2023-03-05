@@ -1,6 +1,7 @@
 package touristTrip.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -25,9 +26,10 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
+    @NotBlank(message = "Username can not be empty!")
     private String username;
-
+    @NotBlank(message = "Please write your password!")
     private String password;
     private boolean enabled;
     @Cascade(CascadeType.ALL)

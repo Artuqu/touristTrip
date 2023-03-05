@@ -48,4 +48,11 @@ public class JpaUserDetailsService implements UserDetailsService, UserService {
         }
         return userRepository.save(user);
     }
+
+    @Override
+    public Optional<User> findUserByName(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+
 }
