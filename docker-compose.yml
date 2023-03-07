@@ -1,0 +1,17 @@
+version: '2'
+services:
+  api:
+    build: ../touristTrip
+    ports:
+      - "8000:8080"
+    depends_on:
+      - database
+  database:
+    container_name: 'postgresql'
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: Tourist
+    ports:
+        - "5555:5432"
