@@ -23,7 +23,7 @@ public class TripController {
     @GetMapping("")
     public ModelAndView getTripView(ModelAndView mav) {
         mav.addObject("trip", jpaTouristService.findAllTrips());
-        mav.setViewName("/trip/addTrip");
+        mav.setViewName("trip/addTrip");
         return mav;
     }
 
